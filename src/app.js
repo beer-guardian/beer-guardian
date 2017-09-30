@@ -1,6 +1,16 @@
 "use strict";
 
+require("dotenv").config();
+
 const path = require("path");
+
+// Database connection
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/beer-guardian", {
+  useMongoClient: true,
+  promiseLibrary: global.Promise,
+});
+mongoose.Promise = global.Promise;
 
 const express = require("express");
 const app = express();
