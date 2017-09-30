@@ -65,9 +65,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // JSON api in the api folder
 app.use("/api/v1", require("./api"));
 
-// Render views directly
-app.use("/template", (req, res) => {
-  res.render("template");
+app.get("/login", (req, res) => res.render("login"));
+app.post("/login", passport.authenticate("local"), (req, res) => {
+    res.redirect("/");
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 console.log(`server is listening on http://localhost:${port}`)
