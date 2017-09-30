@@ -1,6 +1,7 @@
 "use strict";
 
 const BDB = require("../lib/brewdb");
+const BeerModel = require("../models/beers");
 
 module.exports = require("express").Router();
 
@@ -13,6 +14,11 @@ module.exports.get("/search", (req, res) => {
     .then((response) => {
       res.json(response);
     });
+});
+
+module.exports.get("/beers", (req, res) => {
+  BDB.getAllInStock()
+    .then(beers => res.json(beers));
 });
 
 module.exports.get("/beers/:beerid", (req, res) => {
