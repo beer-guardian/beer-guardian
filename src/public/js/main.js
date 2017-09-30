@@ -4,13 +4,16 @@
     
     $(function() {
 
+
+      // console.log(isSafari())
+
       //color the negative scores in red
       scoreColor()
 
       //init tilt js cards with options
       const tilt = $('.js-tilt').tilt({
-        // glare: true,
-        // maxGlare: 0.3,
+        glare: isSafari() ? false : true,
+        maxGlare: isSafari() ? 0 : 0.3,
         speed: 400,
         scale: 1,
         maxTilt: 10,
@@ -18,8 +21,10 @@
       });
 
 
+
+
       $('.beer-cards .card').click(function() {
-        openModal()
+        openModal(isSafari() ? 0.3 : 0)
       })
 
 
@@ -43,7 +48,16 @@
       });
     }
     
-    
+    function isSafari() {
+      var ua = navigator.userAgent.toLowerCase(); 
+      if (ua.indexOf('safari') != -1) { 
+        if (ua.indexOf('chrome') > -1) {
+          return false
+        } else {
+          return true
+        }
+      }
+    }
     
     
     

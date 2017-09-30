@@ -3,7 +3,9 @@
 
 
 .main-layout {
-  padding: 100px;
+  // padding: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   .beer-cards {
     .card {
       width: 300px;
@@ -17,7 +19,9 @@
       transform-style: preserve-3d;
       transform: perspective(500px);
       position: relative;
-      margin: 20px;
+      // margin: 20px 20px 40px 20px;
+      margin-bottom: 40px;
+      margin-right: 40px;
       border-radius: 4px;
       background-size: auto 110%;
       background-position: center;
@@ -34,6 +38,9 @@
           padding: 3px 10px;
           border-radius: 4px;
           font-family: 'Anton', sans-serif;
+          box-shadow: 0 20px 27px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 20px 70px -10px rgba(#000, .7), 0 50px 100px 0 rgba(#000, .2);
+          // display: none;
         }
         .negative {
           background: #630000;
@@ -57,12 +64,15 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          
         }
         .meta {
           font-size: 14px;
           font-weight: 400;
           text-transform: uppercase;
+          max-width: 266px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
       .bottom {
@@ -130,6 +140,12 @@
         &:before {
           opacity: 1;
         }
+      }
+    }
+    .add-new {
+      background: white;
+      .score {
+        display: none;
       }
     }
     .modal-open {

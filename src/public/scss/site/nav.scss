@@ -1,0 +1,55 @@
+// sass imports
+// ============
+
+
+nav {
+  background: #141414;
+  box-shadow: 0 20px 70px -10px rgba(#000, .7), 0 50px 100px 0 rgba(#000, .2);
+  box-shadow: 0 20px 27px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #2B2B2B;
+  .inner {
+    padding: 30px 7%;
+    position: relative;
+    .brand {
+      img {
+        height: 30px;
+        margin-right: 20px;
+      }
+      span {
+        font-family: 'Anton', sans-serif;
+        color: silver;
+        font-size: 24px;
+      }
+    }
+    .login {
+      position: absolute;
+      right: 7%;
+      top: 0;
+      bottom: 0;
+      display: inline-block;
+      width: 32px;
+      opacity: .7;
+      cursor: pointer;
+      transition: all .3s ease;
+      img {
+        width: 30px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      &:hover {
+        opacity: 1;
+
+      }
+      .float-menu {
+        background: red;
+        position: absolute;
+        width: 120px;
+        ul {
+          list-style: none;
+        }
+      }
+    }
+  }
+}
