@@ -12,7 +12,8 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "views"));
 
 // All files in public are served directly
-app.use('/', express.static(path.join(__dirname, 'public')));
+// app.use('/', express.static(path.join(__dirname, 'public')));
+app.get("/", (req, res) => res.render("index"));
 
 // JSON api in the api folder
 app.use("/api/v1", require("./api"));
