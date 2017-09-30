@@ -67,7 +67,12 @@ app.use("/api/v1", require("./api"));
 
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", passport.authenticate("local"), (req, res) => {
-    res.redirect("/");
+  res.redirect("/");
+});
+
+app.get("/register", (req, res) => res.render("register"));
+app.post("/register", (req, res) => {
+  res.json({});
 });
 
 app.get("/logout", (req, res) => {
