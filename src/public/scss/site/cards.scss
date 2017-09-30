@@ -40,7 +40,6 @@
           font-family: 'Anton', sans-serif;
           box-shadow: 0 20px 27px rgba(0, 0, 0, 0.05);
           box-shadow: 0 20px 70px -10px rgba(#000, .7), 0 50px 100px 0 rgba(#000, .2);
-          // display: none;
         }
         .negative {
           background: #630000;
@@ -143,7 +142,11 @@
       }
     }
     .add-new {
-      background: white;
+      background: #B6B6B6;
+      background-image: url(../res/plus.svg);
+      background-size: 30%;
+      background-repeat: no-repeat;
+      background-position: center;
       .score {
         display: none;
       }
