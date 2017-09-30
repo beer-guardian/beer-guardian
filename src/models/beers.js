@@ -3,9 +3,11 @@
 const mongoose = require("mongoose");
 
 const beerSchema = new mongoose.Schema({
-  id: { type: String, required: true },
+  brewerydbId: { type: String, required: true },
   inStock: { type: Boolean, required: true, default: false },
-  rating: { type: Number, default: 0 },
+  labelUrl: String,
+  abv: Number,
+  ibu: Number,
 });
 
 module.exports = mongoose.model("Beer", beerSchema);

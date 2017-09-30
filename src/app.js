@@ -2,7 +2,21 @@
 
 require("dotenv").config();
 
+const express = require("express");
+
+const app = express();
+
 const path = require("path");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
+const hbs = require("express-hbs");
+
+const auth = require("./auth");
+
+const port = 3000;
 
 // Database connection
 const mongoose = require("mongoose");
@@ -12,12 +26,35 @@ mongoose.connect("mongodb://localhost/beer-guardian", {
 });
 mongoose.Promise = global.Promise;
 
-const express = require("express");
-const app = express();
-const port = 3000;
+// decode requests
+app.use(bodyParser.json());
+app.use(cookieParser());
 
-const hbs = require("express-hbs");
-app.engine('hbs', hbs.express4({ defaultLayout: path.join(__dirname, "views/main"), extname: '.hbs' }));
+// Session middleware
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    httpOnly: true,
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    touchAfter: 24 * 3600,
+  }),
+}));
+
+// set up passport middlewares
+const localStrategy = auth.local;
+passport.use(localStrategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.engine('hbs', hbs.express4({
+  defaultLayout: path.join(__dirname, "views/main"),
+  extname: '.hbs',
+  partialsDir: path.join(__dirname, "views/partials"),
+}));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "views"));
 
