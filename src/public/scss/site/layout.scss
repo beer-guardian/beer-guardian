@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: 'Open Sans', sans-serif;
+}
+.col-wrapper {
+  font-size: 0;
+  .col {
+    display: inline-block; 
+    font-size: 14px; 
+    vertical-align: top; 
+  }
+  .one    { width: 8.3333333333%; }
+  .two    { width: 16.6666666666; }
+  .three  { width: 24.9999999999%; }
+  .four   { width: 33.3333333332%; }
+  .five   { width: 41.6666666665%; }
+  .six    { width: 49.9999999998%; }
+  .seven  { width: 58.3333333331%; }
+  .eight  { width: 66.6666666664%; }
+  .nine   { width: 74.9999999997%; }
+  .ten    { width: 83.333333333%; }
+  .eleven { width: 91.6666666663%; }
+  .twelve { width: 100%; }
+} 
+.abs-center {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  margin: auto;
+}
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.layout-center {
+  max-width: 1025px;
+  width: 100%;
+  margin: auto;
+}
+
+
+body {
+  background: #282B2D;
+}
+
+
+.main-layout {
+  .beer-cards {
+    .card {
+      width: 300px;
+      height: 400px;
+      background-color: #7e56ff;
+      background-image: linear-gradient(150deg, #5a00ff 0%, #ff1ff7 100%, #ff1ff7 100%);
+      box-shadow: 0 20px 27px rgba(0, 0, 0, 0.05);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 57px;
+      text-decoration: none;
+      transform-style: preserve-3d;
+      transform: perspective(500px);
+      position: relative;
+      margin: 20px;
+    
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: red;
+        box-shadow: 0 20px 70px -10px rgba(red, .7), 0 50px 100px 0 rgba(red, .2);
+        z-index: -1;
+        transform: translateZ(-50px);
+        transition: .3s;
+      }
+    
+      > span {
+        display: block;
+        transform: translateZ(50px) scale(.7);
+      }
+    
+      &:hover {
+        &:after {
+          transform: translateZ(-100px);
+          opacity: 1;
+        }
+      }
+      .backdrop {
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        position: absolute;
+        background-image: linear-gradient(150deg, #5a00ff 0%, #1fff73 100%, #1fff73 100%);
+        transform: translateZ(0px);
+        opacity: 0;
+        transition: 3s;
+      }
+    }
+    // .card {
+    //   height: 400px;
+    //   width: 300px;
+    //   background: white;
+    //   margin: 20px;
+    //   border-radius: 4px;
+    //   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    //   display: inline-block;
+    // }
+  }
+}
+
+
