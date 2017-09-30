@@ -142,11 +142,16 @@
       }
     }
     .add-new {
-      background: #B6B6B6;
-      background-image: url(../res/plus.svg);
-      background-size: 30%;
-      background-repeat: no-repeat;
-      background-position: center;
+      background: #858585;
+      background: #41554E;
+      // background-image: url(../res/plus.svg);
+      // background-size: 30%;
+      // background-repeat: no-repeat;
+      // background-position: center;
+      img {
+        height: 80px;
+        position: absolute;
+      }
       .score {
         display: none;
       }
