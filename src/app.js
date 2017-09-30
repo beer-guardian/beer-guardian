@@ -15,6 +15,7 @@ const passport = require("passport");
 const hbs = require("express-hbs");
 
 const auth = require("./auth");
+const UserModel = require("./models/users");
 
 const port = 3000;
 
@@ -28,6 +29,7 @@ mongoose.Promise = global.Promise;
 
 // decode requests
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 // Session middleware
@@ -72,7 +74,8 @@ app.post("/login", passport.authenticate("local"), (req, res) => {
 
 app.get("/register", (req, res) => res.render("register"));
 app.post("/register", (req, res) => {
-  res.json({});
+  UserModel.create(req.body)
+    .then(() => res.redirect("/"));
 });
 
 app.get("/logout", (req, res) => {
