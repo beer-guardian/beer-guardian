@@ -90,7 +90,7 @@
       .js-tilt-glare {
         border-radius: 4px;
       }
-      &:after {
+      &:after { 
         content: '';
         position: absolute;
         top: 0;
@@ -115,6 +115,7 @@
         border-radius: 4px;
         opacity: 0;
         transition: all 0.3s ease;
+        transform: translateZ(0.1px);
       }
       &:hover {
         .bottom, .top {

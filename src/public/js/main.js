@@ -10,7 +10,7 @@
       //init tilt js cards with options
       const tilt = $('.js-tilt').tilt({
         // glare: true,
-        maxGlare: 0.3,
+        // maxGlare: 0.3,
         speed: 400,
         scale: 1,
         maxTilt: 10,
