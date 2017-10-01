@@ -16,14 +16,17 @@
         scoreColor()
 
         //init tilt js cards with options
-        const tilt = $('.js-tilt').tilt({
-          glare: isSafari() ? false : true,
-          maxGlare: isSafari() ? 0 : 0.3,
-          speed: 400,
-          scale: 1,
-          maxTilt: 10,
-          perspective: 500
-        });
+        if (!isSafari()) {
+          const tilt = $('.js-tilt').tilt({
+            glare: true,
+            maxGlare: 0.3,
+            speed: 400,
+            scale: 1,
+            maxTilt: 10,
+            perspective: 500
+          });
+        }
+        
 
 
 
