@@ -65,13 +65,13 @@
         var id = $('.active-beer-modal').attr('id')
         console.log(id)
         vote(id,'UP')
-        closeModal()
+        // closeModal()
       });
       $(".active-beer-modal .vote-down").click(function() {
         var id = $('.active-beer-modal').attr('id')
         console.log(id)
         vote(id,'DOWN')
-        closeModal()
+        // closeModal()
       });
 
 
@@ -168,6 +168,7 @@
         console.log(data.score)
         $('#'+id+' .score span').html(data.score)
         $('#'+id+'').attr('data-score',data.score)
+        $('#'+id+'.active-beer-modal .score .number').html(data.score)
         scoreColor();
       });
     }
