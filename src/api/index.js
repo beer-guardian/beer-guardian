@@ -28,6 +28,13 @@ module.exports.get("/search", (req, res) => {
 module.exports.get("/beers", (req, res) =>
   Beers.getAllInStock(req.user).then(beers => res.json(beers)));
 
+module.exports.get("/beers/:id", (req, res) =>
+  Beers.getAllInStock(req.user)
+    .then((beers) => {
+      const beer = beers.filter(b => b._id.toString() === req.params.id)[0];
+      res.json(beer);
+    }));
+
 module.exports.post("/request", (req, res) => {
   if (!req.isAuthenticated()) {
     return res.status(401).json({
