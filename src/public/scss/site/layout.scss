@@ -129,3 +129,37 @@ body {
   }
 }
 
+
+
+
+.footer {
+  background: #202024;
+  position: relative;
+  padding: 100px 10%;
+  img {
+    height: 130px;
+
+  }
+  ul {
+    position: absolute;
+    right: 10%;
+    top: 100px;
+    list-style: none;
+    text-align: right;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+    padding-left: 50px;
+    li {
+      a {
+        text-decoration: none;
+        color: silver;
+        font-size: 10px;
+        padding: 5px 0;
+        opacity: .8;
+        transition: all .2 ease;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
