@@ -61,7 +61,7 @@
 
 
       $('.card vote').click(function() {
-        // console.log('')
+        console.log($(this).parent().find())
       })
 
 
@@ -82,10 +82,12 @@
       $('.modal-cover').fadeIn('fast')
       $('.active-beer-modal').addClass('reveal');
     }
+
     function openAddBeerModal() {
       $('.modal-cover').fadeIn('fast')
       $('.add-beer-modal').addClass('reveal');
     }
+
     function closeModal() {
       $('.add-beer-modal ul').empty();
       $( "#input-beer-search" ).val('');
@@ -93,7 +95,6 @@
       $('.modal-cover').fadeOut('fast');
       $('.modal').removeClass('reveal');
     }
-
 
     function beerSearch(query) {
       $('.add-beer-modal ul').empty();
@@ -116,16 +117,11 @@
       });
     }
     
-
-
     function vote(id, direction) {
       $.post('/api/v1/vote', {beer: id, vote: direction}).done(function(data) {
         console.log(data)
       });
     }
-
-
-    
 
     function scoreColor() {
       $('.card .score span').each(function() {
@@ -148,6 +144,9 @@
     }
     
 
+
+
+
     $('body').on('click', '.add-beer-modal li', function() {
       var name = $(this).attr("data-name");
       if (name == undefined) {
@@ -158,7 +157,7 @@
         id = null;
       }
       console.log(name,id)
-      beerRequest($(this).attr("data-id"))
+      beerRequest(name,id)
     });
     
     
