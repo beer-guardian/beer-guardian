@@ -23,6 +23,12 @@
 
       //modal open and close clicks
       $('.beer-cards .card').click(function() {
+        var name = $(this).find('.title').text()
+        var brewery = $(this).find('.meta').text()
+        var desc = $(this).find('.desc').text()
+        console.log(name)
+        console.log(brewery)
+        console.log(desc)
         openModal()
         // tilt.tilt.destroy.call(tilt);
       })

@@ -35,6 +35,7 @@ app.use(cookieParser());
 
 // Session middleware
 app.use(session({
+
   resave: false,
   saveUninitialized: false,
   secret: process.env.SESSION_SECRET,
@@ -46,6 +47,8 @@ app.use(session({
     touchAfter: 24 * 3600,
   }),
 }));
+console.log(process.env.SESSION_SECRET)
+
 
 // set up passport middlewares
 // and authentication routes
