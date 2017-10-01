@@ -21,6 +21,10 @@ class BeerController {
                   out.userVote = myVote.up ? "UP" : "DOWN";
                 }
               }
+
+              out.ibu = out.ibu || "N/A";
+              out.abv = out.abv || "N/A";
+
               return out;
             }))));
   }
