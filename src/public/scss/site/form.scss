@@ -50,7 +50,7 @@
       border-radius: 3px;
       white-space: nowrap;
       padding: 14px 20px;
-      font-size: 14px;
+      // font-size: 14px;
       line-height: 16px;
       transition: all .6s cubic-bezier(.165,.84,.44,1);
       -webkit-touch-callout: none;
@@ -59,7 +59,8 @@
       -ms-user-select: none;
       width: 100%;
       background-color: #2C6B49;
-      color: white;
+      color: silver;
+      font-size: 12px;
       font-weight: bold;
       transition: all .2s ease;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
