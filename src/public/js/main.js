@@ -43,6 +43,7 @@
           desc: $(this).find('.desc').text(),
           abv: $(this).attr("data-abv"),
           ibu: $(this).attr("data-ibu"),
+          id: $(this).attr("data-id"),
           score: $(this).attr("data-score"),
           label: $(this).css("background-image")
         }
@@ -60,7 +61,18 @@
         e.stopPropagation();
       });
       
-
+      $(".active-beer-modal .vote-up").click(function() {
+        var id = $('.active-beer-modal').attr('id')
+        console.log(id)
+        vote(id,'UP')
+        closeModal()
+      });
+      $(".active-beer-modal .vote-down").click(function() {
+        var id = $('.active-beer-modal').attr('id')
+        console.log(id)
+        vote(id,'DOWN')
+        closeModal()
+      });
 
 
 
@@ -86,6 +98,7 @@
     
     function openActiveBeerModal(beer) {
       console.log(beer)
+      $('.active-beer-modal').attr('id',beer.id)
       $('.active-beer-modal .header .title').html(beer.name)
       $('.active-beer-modal .brewery').html(beer.brewery)
       $('.active-beer-modal .body p').html(beer.desc)
@@ -133,15 +146,18 @@
     
     function vote(id, direction) {
       $.post('/api/v1/vote', {beer: id, vote: direction}).done(function(data) {
-        console.log(data)
+        refreshScore(id)
       });
     }
 
     function scoreColor() {
       $('.card .score span').each(function() {
+        console.log('here')
         var parseScore = parseFloat($(this).text());
         if (parseScore < 0) {
           $(this).addClass('negative')
+        } else {
+          $(this).removeClass('negative')
         }
       });
     }
@@ -149,7 +165,10 @@
     function refreshScore(id) {
       var url = '/api/v1/beers/'+id;
       $.get(url,function(data) {
-        console.log(id)
+        console.log(data.score)
+        $('#'+id+' .score span').html(data.score)
+        $('#'+id+'').attr('data-score',data.score)
+        scoreColor();
       });
     }
     
@@ -177,7 +196,6 @@
       if (id == undefined) {
         id = null;
       }
-      console.log(name,id)
       beerRequest(name,id)
     });
     
