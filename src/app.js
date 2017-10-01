@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
 app.get("/admin/forms/beer/:id", (req, res) => {
   BeerModel.findOne({ _id: req.params.id })
     .then((beer) => {
-      res.render("admin-beer-form", beer);
+      res.render("form", beer);
     });
 });
 
