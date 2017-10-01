@@ -27,6 +27,11 @@ module.exports = {
       if (!req.isAuthenticated()) {
         return res.redirect("/login");
       }
+
+      if (!req.user.admin) {
+        return res.redirect("/");
+      }
+
       res.render("admin");
     });
 
@@ -35,7 +40,10 @@ module.exports = {
       const admins = process.env.ADMIN_EMAILS.split(",") || [];
       req.body.admin = !!_.find(admins, a => a === req.body.email);
       UserModel.create(req.body)
-        .then(() => res.redirect("/"));
+        .then((user) => {
+          req.session.passport = { user: user._id.toString() };
+          res.redirect("/");
+        });
     });
 
     app.get("/logout", (req, res) => {
