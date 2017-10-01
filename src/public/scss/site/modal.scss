@@ -12,17 +12,20 @@
   right: 0;
   background: rgba(0, 0, 0, 0.68);
   display: none;
-  
+  z-index: 100;
+  // transform: translateZ(0.1px);
 }
 .modal {
+  // transform: translateZ(10px);
+  // display: none;
+  z-index: 101;
   opacity: 0;
   transition: all .1s ease-in;
   transform: translate(0, 40px) scale(0.9);
   visibility: hidden;
   height: 650px;
   width: 800px;
-  background: #DFDFDF;
-  z-index: 10;
+  background: #DFDFDF; 
   border-radius: 4px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   .image {
@@ -153,5 +156,6 @@
   opacity: 1;
   visibility: visible;
   transform: translate(0, 0) scale(1);
+  transform: translateZ(60px);
   transition: all .1s ease-out;
 }

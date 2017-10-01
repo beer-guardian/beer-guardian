@@ -5,7 +5,6 @@
     $(function() {
 
 
-      // console.log(isSafari())
 
       //color the negative scores in red
       scoreColor()
@@ -22,9 +21,10 @@
 
 
 
-
+      //modal open and close clicks
       $('.beer-cards .card').click(function() {
         openModal()
+        // tilt.tilt.destroy.call(tilt);
       })
       $('.modal-cover').click(function() {
         closeModal()
