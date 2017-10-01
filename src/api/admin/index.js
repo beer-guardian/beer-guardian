@@ -30,6 +30,12 @@ module.exports.post("/beers", (req, res) => {
     })
     .then((beer) => {
       res.json(beer);
+    })
+    .catch((err) => {
+      if (err.statusCode === 404) {
+        return res.status(404).json({ message: "Beer not found" });
+      }
+      res.status(500).json({ message: "Unknown error" });
     });
 });
 
