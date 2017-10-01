@@ -93,6 +93,17 @@ function ensureAdmin(req, res, next) {
   next();
 }
 
+app.get("/admin/forms/delete/:id", ensureAdmin, (req, res) => {
+  BeerModel.findOneAndRemove({ _id: req.params.id })
+    .then((beer) => {
+      res.redirect("/admin");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/admin");
+    });
+});
+
 app.get("/admin/forms/beer/:id", ensureAdmin, (req, res) => {
   BeerModel.findOne({ _id: req.params.id })
     .then((beer) => {
