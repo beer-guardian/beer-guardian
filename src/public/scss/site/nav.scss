@@ -53,3 +53,14 @@ nav {
     }
   }
 }
+.admin-nav {
+  .inner {
+    padding: 30px 7%;
+    position: relative;
+    .login {
+      img {
+        content:url("../res/house.svg");
+      }
+    }
+  }
+}

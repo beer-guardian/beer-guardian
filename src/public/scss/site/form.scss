@@ -1,9 +1,65 @@
 .access-form {
-  background: red;
+  // background: red;
+  text-align: center;
+  padding-top: 10%;
+  img {
+    margin: auto;
+    height: 300px;
+  }
   form {
-    width: 500px;
+    display: block;
+    padding-top: 50px;
+    text-align: left;
+    width: 400px;
+    // background: green;
+    margin: auto;
     input {
       width: 100%;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      padding: 12px;
+      border-radius: 4px;
+      border: 0px solid #f2f2f2;
+      background-color: #f8f8f8;
+      color: #767676;
+      font-size: 14px;
+      line-height: 19px;
+      box-shadow: none;
+      transition: all .6s cubic-bezier(.165,.84,.44,1);
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    button {
+      margin-top: 20px;
+      display: inline-block;
+      margin-right: 5px;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      white-space: nowrap;
+      padding: 14px 20px;
+      font-size: 14px;
+      line-height: 16px;
+      transition: all .6s cubic-bezier(.165,.84,.44,1);
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      width: 100%;
+      background-color: #2C6B49;
+      color: white;
+      font-weight: bold;
+      transition: all .2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      &:hover {
+        background: #378156;
+      }
     }
   }
 }
