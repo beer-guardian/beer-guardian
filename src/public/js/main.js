@@ -4,7 +4,13 @@
     
     $(function() {
 
+      //debug
+      // openAddBeerModal()
+      //debug
 
+      $("#pass + .close").on('click', function() {
+        $("#pass").val('');
+      });
 
       //color the negative scores in red
       scoreColor()
@@ -19,6 +25,14 @@
         perspective: 500
       });
 
+
+
+      $('#input-beer-search').keypress(function (e) {
+        if (e.which == 13) {
+          beerSearch($('#input-beer-search').val())
+          return false;
+        }
+      });
 
 
       //modal open and close clicks
@@ -36,6 +50,7 @@
       })
       $('.beer-cards .card-add').click(function() {
         openAddBeerModal()
+        $( "#input-beer-search" ).focus();
       })
       $('.modal-cover').click(function() {
         closeModal()
@@ -70,6 +85,38 @@
       $('.modal-cover').fadeOut('fast')
       $('.modal').removeClass('reveal');
     }
+
+
+    function beerSearch(query) {
+      var url = '/api/v1/search?q='+query;
+      $.get(url,function(data) {
+        $.each(data,function(key,value) {
+          $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
+        });
+      });
+    }
+
+    function beerRequest(id) {
+      var data = {
+        beer: id
+      }
+      // $.ajax({
+      //   type: "POST",
+      //   url: '/api/v1/request',
+      //   data: data,
+      //   success: success,
+      //   dataType: dataType
+      // });
+      $.post('/api/v1/request', function(data ) {
+        $( ".result" ).html( data );
+      });
+    }
+    
+
+
+
+
+
     
 
     function scoreColor() {
@@ -92,6 +139,10 @@
       }
     }
     
+
+    $('body').on('click', '.add-beer-modal li', function() {
+      console.log(true)
+    });
     
     
     

@@ -155,8 +155,73 @@
 }
 
 .add-beer-modal {
-  background: red;
+  // position: relative;
   width: 500px;
+  // height: 59px;
+  // height: 200px;
+  background: transparent;
+  box-shadow: none;
+  // transition: all .3s ease;
+  .header {
+    input {
+      font-size: 26px;
+      padding: 24px;
+      border-radius: 4px;
+      width: 100%;
+      -webkit-appearance: none;
+      border: 1px solid #C5C5C5;;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      position: relative;
+      z-index: 1;
+    }
+    ul {
+      width: 98%;
+      margin: auto;
+      background: #dfdfdf;
+      max-height: 400px;
+      overflow: scroll;
+      border-radius: 0 0 4px 4px;
+      transition: all .2s ease;
+      z-index: 0;
+      li {
+        border-bottom: 1px solid #A5A5A5;
+        font-size: 20px;
+        padding: 20px;
+        cursor: pointer;
+        position: relative;
+        div {
+          font-family: 'Anton', sans-serif;
+          color: #303030
+        }
+        .small {
+          font-size: 12px;
+          margin-top: 10px;
+          font-family: 'Open Sans', sans-serif;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          height: 30px;
+          width: 30px;
+          top: 0;
+          right: 20px;
+          bottom: 0;
+          left: auto;
+          margin: auto;
+          background-image: url(../res/plus-light.svg);
+          background-size: contain;
+          opacity: .2;
+          transition: all .2s ease;
+        }
+        &:hover {
+          background: #CECECE;
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -166,5 +231,10 @@
   visibility: visible;
   transform: translate(0, 0) scale(1);
   transform: translateZ(60px);
-  // transition: translateZ 0 ease;
 }
+
+
+
+
+
+
