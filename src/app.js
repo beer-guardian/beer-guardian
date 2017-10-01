@@ -22,7 +22,7 @@ const port = 3000;
 
 // Database connection
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/beer-guardian", {
+mongoose.connect(process.env.MONGODB_URI, {
   useMongoClient: true,
   promiseLibrary: global.Promise,
 });
