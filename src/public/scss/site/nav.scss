@@ -21,7 +21,7 @@ nav {
         font-size: 24px;
       }
     }
-    .login {
+    .nav-link {
       position: absolute;
       right: 7%;
       top: 0;
@@ -51,6 +51,9 @@ nav {
         }
       }
     }
+    .home {
+      display: none;
+    }
   }
 }
 .admin-nav {
@@ -58,9 +61,10 @@ nav {
     padding: 30px 7%;
     position: relative;
     .login {
-      img {
-        content:url("../res/house.svg");
-      }
+      display: none;
+    }
+    .home {
+      display: block;
     }
   }
 }

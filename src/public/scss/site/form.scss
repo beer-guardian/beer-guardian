@@ -1,5 +1,4 @@
 .access-form {
-  // background: red;
   text-align: center;
   padding-top: 10%;
   img {
@@ -7,13 +6,13 @@
     height: 300px;
   }
   form {
+    padding-bottom: 100px;
     display: block;
     padding-top: 50px;
     text-align: left;
     width: 400px;
-    // background: green;
     margin: auto;
-    input {
+    input, textarea {
       width: 100%;
       display: block;
       width: 100%;
@@ -60,6 +59,37 @@
       &:hover {
         background: #378156;
       }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.admin-edit-form {
+  padding-top: 40px;
+
+  h2 {
+    color: white;
+    border-bottom: 2px solid white;
+    display: inline-block;
+  }
+  .input-wrapper {
+    margin-bottom: 40px;
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: grey;
+      margin-bottom: 10px;
     }
   }
 }
