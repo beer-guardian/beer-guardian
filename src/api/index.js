@@ -8,6 +8,9 @@ const RequestModel = require("../models/requests");
 module.exports = require("express").Router();
 
 module.exports.get("/search", (req, res) => {
+  if (req.query.q === "") {
+    return res.json([]);
+  }
   BDB.search(req.query.q)
     .then((response) => {
       if (!response) {
