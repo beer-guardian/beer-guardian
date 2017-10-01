@@ -10,7 +10,16 @@ module.exports = require("express").Router();
 module.exports.get("/search", (req, res) => {
   BDB.search(req.query.q)
     .then((response) => {
+      if (!response) {
+        return res.json([]);
+      }
       res.json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        message: "Unknown error",
+      });
     });
 });
 
