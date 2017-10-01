@@ -1,6 +1,6 @@
 "use strict";
 
-const BeerModel = require("../models/beers");
+const BeerModel = require("../../models/beers");
 
 module.exports = require("express").Router();
 
