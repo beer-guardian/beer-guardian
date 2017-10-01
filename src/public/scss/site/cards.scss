@@ -150,7 +150,8 @@
       // background-position: center;
       img {
         height: 80px;
-        position: absolute;
+        width: 80px;
+        transform: translateZ(50px) scale(1);
       }
       .score {
         display: none;
