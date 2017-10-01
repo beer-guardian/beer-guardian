@@ -5,10 +5,7 @@
 .main-layout {
   padding-top: 100px;
   padding-bottom: 100px;
-  // padding-right: 5%;
-  // padding-left: 5%;
   .beer-cards {
-    // text-align: center;
     .card {
       text-align: left;
       width: 280px;
@@ -23,8 +20,6 @@
       transform: perspective(500px);
       position: relative;
       margin: 10px 10px 50px 10px;
-      // margin-bottom: 80px;
-      // margin-right: 20px;
       border-radius: 4px;
       background-size: auto 110%;
       background-position: center;
