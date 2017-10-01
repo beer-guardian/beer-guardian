@@ -1,14 +1,14 @@
 "use strict";
 
 const passport = require("passport");
-const Users = require("../models/users");
+const UserModel = require("../models/users");
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  Users.findById(id, function(err, user) {
+  UserModel.findById(id, function(err, user) {
     done(err, user);
   });
 });
