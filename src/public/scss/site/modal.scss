@@ -13,11 +13,9 @@
   background: rgba(0, 0, 0, 0.68);
   display: none;
   z-index: 100;
-  // transform: translateZ(0.1px);
+  transform: translateZ(60px);
 }
 .modal {
-  // transform: translateZ(10px);
-  // display: none;
   z-index: 101;
   opacity: 0;
   transition: all .1s ease-in;
@@ -33,7 +31,7 @@
     width: 200px;
     border-radius: 50%;
     position: absolute;
-    left: -60px;
+    left: -40px;
     top: -35px;
     background-image: url(../res/example/1.jpg);
     background-size: cover;

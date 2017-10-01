@@ -1,40 +1,22 @@
 <div class="main-layout">
   <div class="beer-cards">
-    <div class="card js-tilt example1">
-      <div class="score"><span>120</span></div>
-      <div class="top">
-        <div class="title">MacTarnahan’s Amber Ale</div>
-        <div class="meta">PORTLAND BREWING CO</div>
-      </div>
-      <div class="col-wrapper bottom">
-        <div class="col six vote vote-down"><img src="../res/thumbs-down.svg"></div>
-        <div class="col six vote vote-up"><img src="../res/thumbs-up.svg"></div>
-      </div>
-    </div>
-    <div class="card js-tilt example2">
-      <div class="score"><span>43</span></div>
-      <div class="top">
-        <div class="title">Oatmeal Stout</div>
-        <div class="meta">Pyramid Breweries</div>
-      </div>
-      <div class="col-wrapper bottom">
-        <div class="col six vote vote-down"><img src="../res/thumbs-down.svg"></div>
-        <div class="col six vote vote-up"><img src="../res/thumbs-up.svg"></div>
-      </div>
-    </div>
-    <div class="card js-tilt example3">
-      <div class="score"><span>-12</span></div>
-      <div class="top">
-        <div class="title">Space Caravan</div>
-        <div class="meta">The Devils Trumpet Brewing Co</div>
-      </div>
-      <div class="col-wrapper bottom">
-        <div class="col six vote vote-down"><img src="../res/thumbs-down.svg"></div>
-        <div class="col six vote vote-up"><img src="../res/thumbs-up.svg"></div>
-      </div>  
-    </div>
+    {{#if beers}}
+      {{#each beers}}
+        <div class="card js-tilt example1" style="background-image: url({{labelUrl}})" data-id="{{id}}">
+          <div class="score"><span>{{rating}}</span></div>
+          <div class="top">
+            <div class="title">{{name}}</div>
+            <div class="meta">{{brewery}}</div>
+          </div>
+          <div class="col-wrapper bottom">
+            <div class="col six vote vote-down"><img src="../res/thumbs-down.svg"></div>
+            <div class="col six vote vote-up"><img src="../res/thumbs-up.svg"></div>
+          </div>
+          <p class="desc hidden">{{description}}</p>
+        </div>
+      {{/each}}
+    {{/if}}
     <div class="card js-tilt add-new">
-      {{!-- <div class="test">test</div> --}}
       <img src="../res/plus.svg" class="abs-center">
     </div>
   </div>
