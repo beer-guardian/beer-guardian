@@ -19,7 +19,6 @@ module.exports.get("/search", (req, res) => {
       res.json(response);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         message: "Unknown error",
       });
@@ -40,6 +39,9 @@ module.exports.post("/request", (req, res) => {
     return RequestModel.create({
       user: req.user._id,
       name: req.body.name,
+    })
+    .then((request) => {
+      res.json(request);
     });
   }
 
@@ -55,7 +57,6 @@ module.exports.post("/request", (req, res) => {
       res.json(request);
     })
     .catch((err) => {
-      console.error(err);
       res.status(500).json({
         message: "Unknown error",
       });
