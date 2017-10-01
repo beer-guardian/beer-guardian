@@ -29,6 +29,7 @@
           desc: $(this).find('.desc').text(),
           abv: $(this).attr("data-abv"),
           ibu: $(this).attr("data-ibu"),
+          score: $(this).attr("data-score"),
           label: $(this).css("background-image")
         }
         openModal(beer)
@@ -48,11 +49,12 @@
     
     function openModal(beer) {
       console.log(beer)
-      $('.modal .title').html(beer.name)
+      $('.modal .header .title').html(beer.name)
       $('.modal .brewery').html(beer.brewery)
       $('.modal .body p').html(beer.desc)
       $('.modal .widget.abv .number').html(beer.abv)
       $('.modal .widget.ibu .number').html(beer.ibu)
+      $('.modal .widget.ibu .score').html(beer.ibu)
       $('.modal .image').css('background-image',beer.label)
       $('.modal-cover').fadeIn('fast')
       $('.modal').addClass('reveal');
