@@ -195,8 +195,11 @@
       var url = '/api/v1/search?q='+query;
       if (query!=='') {
         $.get(url,function(data) {
+          console.log(data)
           $.each(data,function(key,value) {
-            $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
+            if (value.breweries) {
+              $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
+            }
           });
           $('.add-beer-modal ul').append("<li data-name='"+query+"'><div>'"+query+"'</div><div class='small'>Don't see what you want? Submit your current search term.</div></li>");
         });
