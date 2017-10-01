@@ -157,6 +157,7 @@
       if (id == undefined) {
         id = null;
       }
+      console.log(name,id)
       beerRequest($(this).attr("data-id"))
     });
     
