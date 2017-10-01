@@ -17,15 +17,21 @@
 }
 .modal {
   z-index: 101;
+  position: fixed;
   opacity: 0;
-  transition: all .1s ease-in;
+  transition: transform .1s ease-in;
   transform: translate(0, 40px) scale(0.9);
   visibility: hidden;
   height: 650px;
-  width: 800px;
+  width: 740px;
   background: #DFDFDF; 
   border-radius: 4px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+
+.active-beer-modal {
   .image {
     height: 200px;
     width: 200px;
@@ -33,7 +39,7 @@
     position: absolute;
     left: -40px;
     top: -35px;
-    background-image: url(../res/example/1.jpg);
+    background-image: url(../res/example/1.jpg); //make default pls
     background-size: cover;
     background-position: center;
     border: 4px solid white;
@@ -148,6 +154,11 @@
   }
 }
 
+.add-beer-modal {
+  background: red;
+  width: 500px;
+}
+
 
 
 .reveal {
@@ -155,5 +166,5 @@
   visibility: visible;
   transform: translate(0, 0) scale(1);
   transform: translateZ(60px);
-  transition: all .1s ease-out;
+  // transition: translateZ 0 ease;
 }

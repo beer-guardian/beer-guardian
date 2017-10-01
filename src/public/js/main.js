@@ -34,8 +34,8 @@
         }
         openActiveBeerModal(beer)
       })
-      $('.beer-cards .card-active').click(function() {
-        openModal()
+      $('.beer-cards .card-add').click(function() {
+        openAddBeerModal()
       })
       $('.modal-cover').click(function() {
         closeModal()
@@ -52,18 +52,19 @@
     
     function openActiveBeerModal(beer) {
       console.log(beer)
-      $('.modal .header .title').html(beer.name)
-      $('.modal .brewery').html(beer.brewery)
-      $('.modal .body p').html(beer.desc)
-      $('.modal .widget.abv .number').html(beer.abv)
-      $('.modal .widget.ibu .number').html(beer.ibu)
-      $('.modal .widget.score .number').html(beer.score)
-      $('.modal .image').css('background-image',beer.label)
+      $('.active-beer-modal .header .title').html(beer.name)
+      $('.active-beer-modal .brewery').html(beer.brewery)
+      $('.active-beer-modal .body p').html(beer.desc)
+      $('.active-beer-modal .widget.abv .number').html(beer.abv)
+      $('.active-beer-modal .widget.ibu .number').html(beer.ibu)
+      $('.active-beer-modal .widget.score .number').html(beer.score)
+      $('.active-beer-modal .image').css('background-image',beer.label)
       $('.modal-cover').fadeIn('fast')
-      $('.modal').addClass('reveal');
+      $('.active-beer-modal').addClass('reveal');
     }
     function openAddBeerModal() {
-      
+      $('.modal-cover').fadeIn('fast')
+      $('.add-beer-modal').addClass('reveal');
     }
     function closeModal() {
       $('.modal-cover').fadeOut('fast')
@@ -75,7 +76,6 @@
       $('.card .score span').each(function() {
         var parseScore = parseFloat($(this).text());
         if (parseScore < 0) {
-          console.log(true)
           $(this).addClass('negative')
         }
       });

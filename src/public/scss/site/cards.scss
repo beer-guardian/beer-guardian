@@ -20,7 +20,7 @@
       transform: perspective(500px);
       position: relative;
       // margin: 20px 20px 40px 20px;
-      margin-bottom: 40px;
+      margin-bottom: 80px;
       margin-right: 40px;
       border-radius: 4px;
       background-size: auto 110%;
@@ -144,7 +144,7 @@
         display: none;
       }
     }
-    .add-new {
+    .card-add {
       background: #353837;
       img {
         height: 80px;
@@ -152,17 +152,6 @@
         transform: translateZ(50px) scale(1);
         z-index: 10;
       }
-    }
-    .modal-open {
-      position: absolute;
-      height: 800px;
-      width: 800px;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      z-index: 10;
     }
     .example1 {
       background-image: url(../res/example/1.jpg)
