@@ -50,7 +50,7 @@
     
     
     
-    function openModal(beer) {
+    function openActiveBeerModal(beer) {
       console.log(beer)
       $('.modal .header .title').html(beer.name)
       $('.modal .brewery').html(beer.brewery)
@@ -61,6 +61,9 @@
       $('.modal .image').css('background-image',beer.label)
       $('.modal-cover').fadeIn('fast')
       $('.modal').addClass('reveal');
+    }
+    function openAddBeerModal() {
+      
     }
     function closeModal() {
       $('.modal-cover').fadeOut('fast')
