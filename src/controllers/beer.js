@@ -24,6 +24,7 @@ class BeerController {
 
               out.ibu = out.ibu || "--";
               out.abv = out.abv || "--";
+              out.description = out.description || "No description available for this beer.";
 
               return out;
             }))));
