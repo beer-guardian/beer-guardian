@@ -19,7 +19,7 @@
   z-index: 101;
   position: fixed;
   opacity: 0;
-  transition: transform .1s ease-in;
+  transition: all .1s ease-in;
   transform: translate(0, 40px) scale(0.9);
   visibility: hidden;
   height: 650px;
@@ -236,6 +236,7 @@
   visibility: visible;
   transform: translate(0, 0) scale(1);
   transform: translateZ(60px);
+  transition: all .1s ease-out;
 }
 
 

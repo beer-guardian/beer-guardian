@@ -50,13 +50,18 @@
       })
       $('.beer-cards .card-add').click(function() {
         openAddBeerModal()
-        $( "#input-beer-search" ).focus();
+        setTimeout(function() { $('#input-beer-search').focus() }, 100);
       })
       $('.modal-cover').click(function() {
         closeModal()
       })
       $('.modal-close').click(function() {
         closeModal()
+      })
+
+
+      $('.card vote').click(function() {
+        // console.log('')
       })
 
 
@@ -91,16 +96,16 @@
 
 
     function beerSearch(query) {
+      $('.add-beer-modal ul').empty();
       var url = '/api/v1/search?q='+query;
-      
-      $.get(url,function(data) {
-        console.log(data)
-        // console.log(data.length())
-
-        $.each(data,function(key,value) {
-          $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
+      if (query!=='') {
+        $.get(url,function(data) {
+          $.each(data,function(key,value) {
+            $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
+          });
+          $('.add-beer-modal ul').append("<li data-name='"+query+"'><div>'"+query+"'</div><div class='small'>Don't see what you want? Submit your current search term.</div></li>");
         });
-      });
+      }
     }
 
     function beerRequest(id) {
@@ -113,7 +118,11 @@
     
 
 
-
+    function vote(id, direction) {
+      $.post('/api/v1/vote', {beer: id, vote: direction}).done(function(data) {
+        console.log(data)
+      });
+    }
 
 
     
@@ -140,6 +149,14 @@
     
 
     $('body').on('click', '.add-beer-modal li', function() {
+      var name = $(this).attr("data-name");
+      if (name == undefined) {
+        name = null;
+      }
+      var id = $(this).attr("data-id");
+      if (id == undefined) {
+        id = null;
+      }
       beerRequest($(this).attr("data-id"))
     });
     
