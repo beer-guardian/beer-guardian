@@ -24,7 +24,13 @@
 
 
       $('.beer-cards .card').click(function() {
-        openModal(isSafari() ? 0.3 : 0)
+        openModal()
+      })
+      $('.modal-cover').click(function() {
+        closeModal()
+      })
+      $('.modal-close').click(function() {
+        closeModal()
       })
 
 
@@ -34,7 +40,12 @@
     
     
     function openModal() {
-
+      $('.modal-cover').fadeIn('fast')
+      $('.modal').addClass('reveal');
+    }
+    function closeModal() {
+      $('.modal-cover').fadeOut('fast')
+      $('.modal').removeClass('reveal');
     }
     
 
