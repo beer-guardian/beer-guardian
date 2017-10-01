@@ -228,8 +228,12 @@
     function vote(id, direction) {
       $.post('/api/v1/vote', {beer: id, vote: direction}).done(function(data) {
         refreshScore(id)
-      });
-    }
+      }).catch(function(e) {
+        if (e.responseJSON.message == 'Unauthorized') {
+          window.location = "/register";
+        }
+    })
+  }
 
     function scoreColor() {
       $('.card .score span').each(function() {
