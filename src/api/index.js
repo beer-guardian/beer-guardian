@@ -36,20 +36,23 @@ module.exports.post("/request", (req, res) => {
     });
   }
 
+  if (req.body.name && !req.body.beer) {
+    return RequestModel.create({
+      user: req.user._id,
+      name: req.body.name,
+    });
+  }
+
   return BDB.getOneById(req.body.beer)
     .then((beer) => {
-      if (!beer) {
-        return res.status(404).json({ message: "Beer not found" });
-      }
-
       return RequestModel.create({
         user: req.user._id,
         brewerydbId: req.body.beer,
         name: beer.name,
-      })
-      .then((request) => {
-        res.json(request);
-      })
+      });
+    })
+    .then((request) => {
+      res.json(request);
     })
     .catch((err) => {
       console.error(err);
