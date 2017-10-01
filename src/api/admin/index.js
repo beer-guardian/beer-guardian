@@ -1,6 +1,9 @@
 "use strict";
 
 const BeerModel = require("../../models/beers");
+const BDB = require("../../lib/brewdb");
+
+const _ = require("lodash");
 
 module.exports = require("express").Router();
 
@@ -19,8 +22,8 @@ module.exports.post("/beers", (req, res) => {
         inStock: true,
         name: beer.name,
         description: beer.description,
-        brewery: beer.breweries[0].name,
-        labelUrl: beer.labels.large,
+        brewery: _.get(beer, "breweries.0.name"),
+        labelUrl: _.get(beer, "labels.large"),
         abv: beer.abv,
         ibu: beer.ibu,
       })
