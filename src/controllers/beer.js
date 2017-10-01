@@ -2,6 +2,7 @@
 
 const Model = require("../models/beers");
 const Votes = require("./vote");
+const _ = require("lodash");
 
 class BeerController {
   static getAllInStock(user) {
@@ -27,7 +28,8 @@ class BeerController {
               out.description = out.description || "No description available for this beer.";
 
               return out;
-            }))));
+            }))))
+      .then((beers) => _.sortBy(beers, b => -b.score));
   }
 }
 
