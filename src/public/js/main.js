@@ -4,92 +4,111 @@
     
     $(function() {
 
-      //debug
-      // openAddBeerModal()
-      //debug
+      if (window.location.pathname == '/') {
 
-      $("#pass + .close").on('click', function() {
-        $("#pass").val('');
-      });
+   
 
-      //color the negative scores in red
-      scoreColor()
+        $("#pass + .close").on('click', function() {
+          $("#pass").val('');
+        });
 
-      //init tilt js cards with options
-      const tilt = $('.js-tilt').tilt({
-        glare: isSafari() ? false : true,
-        maxGlare: isSafari() ? 0 : 0.3,
-        speed: 400,
-        scale: 1,
-        maxTilt: 10,
-        perspective: 500
-      });
+        //color the negative scores in red
+        scoreColor()
 
-
-
-      $('#input-beer-search').keypress(function (e) {
-        if (e.which == 13) {
-          beerSearch($('#input-beer-search').val())
-          return false;
-        }
-      });
-
-
-      //modal open and close clicks
-      $('.beer-cards .card-active').click(function() {
-        var beer = {
-          name: $(this).find('.title').text(),
-          brewery: $(this).find('.meta').text(),
-          desc: $(this).find('.desc').text(),
-          abv: $(this).attr("data-abv"),
-          ibu: $(this).attr("data-ibu"),
-          id: $(this).attr("data-id"),
-          score: $(this).attr("data-score"),
-          label: $(this).css("background-image")
-        }
-        openActiveBeerModal(beer)
-      })
-
-      $(".card .vote-up").click(function (e) {
-        var id = $(this).parent().parent().attr("data-id");
-        vote(id,'UP')
-        e.stopPropagation();
-      });
-      $(".card .vote-down").click(function (e) {
-        var id = $(this).parent().parent().attr("data-id");
-        vote(id,'DOWN')
-        e.stopPropagation();
-      });
-      
-      $(".active-beer-modal .vote-up").click(function() {
-        var id = $('.active-beer-modal').attr('id')
-        console.log(id)
-        vote(id,'UP')
-        // closeModal()
-      });
-      $(".active-beer-modal .vote-down").click(function() {
-        var id = $('.active-beer-modal').attr('id')
-        console.log(id)
-        vote(id,'DOWN')
-        // closeModal()
-      });
+        //init tilt js cards with options
+        const tilt = $('.js-tilt').tilt({
+          glare: isSafari() ? false : true,
+          maxGlare: isSafari() ? 0 : 0.3,
+          speed: 400,
+          scale: 1,
+          maxTilt: 10,
+          perspective: 500
+        });
 
 
 
-
-      $('.beer-cards .card-add').click(function() {
-        openAddBeerModal()
-        setTimeout(function() { $('#input-beer-search').focus() }, 100);
-      })
-      $('.modal-cover').click(function() {
-        closeModal()
-      })
-      $('.modal-close').click(function() {
-        closeModal()
-      })
+        $('#input-beer-search').keypress(function (e) {
+          if (e.which == 13) {
+            beerSearch($('#input-beer-search').val())
+            return false;
+          }
+        });
 
 
+        //modal open and close clicks
+        $('.beer-cards .card-active').click(function() {
+          var beer = {
+            name: $(this).find('.title').text(),
+            brewery: $(this).find('.meta').text(),
+            desc: $(this).find('.desc').text(),
+            abv: $(this).attr("data-abv"),
+            ibu: $(this).attr("data-ibu"),
+            id: $(this).attr("data-id"),
+            score: $(this).attr("data-score"),
+            label: $(this).css("background-image")
+          }
+          openActiveBeerModal(beer)
+        })
 
+        $(".card .vote-up").click(function (e) {
+          var id = $(this).parent().parent().attr("data-id");
+          vote(id,'UP')
+          e.stopPropagation();
+        });
+        $(".card .vote-down").click(function (e) {
+          var id = $(this).parent().parent().attr("data-id");
+          vote(id,'DOWN')
+          e.stopPropagation();
+        });
+        
+        $(".active-beer-modal .vote-up").click(function() {
+          var id = $('.active-beer-modal').attr('id')
+          console.log(id)
+          vote(id,'UP')
+          // closeModal()
+        });
+        $(".active-beer-modal .vote-down").click(function() {
+          var id = $('.active-beer-modal').attr('id')
+          console.log(id)
+          vote(id,'DOWN')
+          // closeModal()
+        });
+
+
+
+
+        $('.beer-cards .card-add').click(function() {
+          openAddBeerModal()
+          setTimeout(function() { $('#input-beer-search').focus() }, 100);
+        })
+        $('.modal-cover').click(function() {
+          closeModal()
+        })
+        $('.modal-close').click(function() {
+          closeModal()
+        })
+
+
+
+        //admin route
+      } else if (window.location.pathname == '/admin') {
+
+        // $('#table_id').DataTable();
+        $.get('/api/v1/beers',function(data) {
+          console.log(data)
+          $.each(data,function(key,value){
+            console.log(value)
+            
+            $('.admin table tbody').append('<tr><td>'+value._id+'</td>' +
+            '<td>'+value.name+'</td>' +
+            '<td>'+value.brewery+'</td>' +
+            '<td>'+value.brewerydbId+'</td>' +
+            '<td>'+value.score+'</td>' +
+            '</tr>');
+          })
+        });
+
+      }
 
     });
     
@@ -152,7 +171,6 @@
 
     function scoreColor() {
       $('.card .score span').each(function() {
-        console.log('here')
         var parseScore = parseFloat($(this).text());
         if (parseScore < 0) {
           $(this).addClass('negative')
