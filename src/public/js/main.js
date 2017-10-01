@@ -162,12 +162,16 @@
     
     
     function openActiveBeerModal(beer) {
+      var ibu = beer.ibu;
+      if (beer.ibu.length > 3) {
+        ibu = beer.ibu.slice(0, -2);
+      }
       $('.active-beer-modal').attr('id',beer.id)
       $('.active-beer-modal .header .title').html(beer.name)
       $('.active-beer-modal .brewery').html(beer.brewery)
       $('.active-beer-modal .body p').html(beer.desc)
       $('.active-beer-modal .widget.abv .number').html(beer.abv)
-      $('.active-beer-modal .widget.ibu .number').html(beer.ibu)
+      $('.active-beer-modal .widget.ibu .number').html(ibu)
       $('.active-beer-modal .widget.score .number').html(beer.score)
       $('.active-beer-modal .image').css('background-image',beer.label)
       $('.modal-cover').fadeIn('fast')
