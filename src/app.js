@@ -3,6 +3,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const _ = require("lodash");
 
 const app = express();
 
@@ -19,6 +20,8 @@ const UserModel = require("./models/users");
 const BeerModel = require("./models/beers");
 const RequestModel = require("./models/requests");
 const Beers = require("./controllers/beer");
+
+const BDB = require("./lib/brewdb");
 
 const port = 3000;
 
@@ -106,6 +109,17 @@ app.post("/admin/forms/beer/:id", ensureAdmin, (req, res) => {
     .then(() => res.redirect("/admin"));
 });
 
+app.get("/admin/forms/deny/:id", ensureAdmin, (req, res) => {
+  RequestModel.findOneAndRemove({ _id: req.params.id })
+    .then(() => {
+      res.redirect("/admin");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/admin");
+    });
+});
+
 app.get("/admin/forms/request/:id", ensureAdmin, (req, res) => {
   RequestModel.findOne({ _id: req.params.id })
     .then((request) => {
@@ -127,6 +141,7 @@ app.get("/admin/forms/request/:id", ensureAdmin, (req, res) => {
           res.redirect("/admin");
         })
         .catch((err) => {
+          console.log(err);
           res.redirect("/admin");
         });
       });
