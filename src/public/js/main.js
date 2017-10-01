@@ -142,6 +142,7 @@
             $('.admin .requests-table').append('<tr><td>'+value._id+'</td>' +
             '<td>'+value.name+'</td>' +
             '<td>'+value.brewerydbId+'</td>' +
+            '<td><a class="approve-link" href="/admin/forms/request/'+value._id+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+value._id+'">DENY</a></td>' +
             '</tr>');
           })
         });
