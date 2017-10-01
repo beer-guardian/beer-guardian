@@ -17,6 +17,7 @@ const hbs = require("express-hbs");
 const auth = require("./auth");
 const UserModel = require("./models/users");
 const BeerModel = require("./models/beers");
+const RequestModel = require("./models/requests");
 const Beers = require("./controllers/beer");
 
 const port = 3000;
@@ -77,20 +78,58 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/admin/forms/beer/:id", (req, res) => {
+function ensureAdmin(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/login");
+  }
+
+  if (!req.user.admin) {
+    return res.redirect("/");
+  }
+
+  next();
+}
+
+app.get("/admin/forms/beer/:id", ensureAdmin, (req, res) => {
   BeerModel.findOne({ _id: req.params.id })
     .then((beer) => {
       res.render("form", beer);
     });
 });
 
-app.post("/admin/forms/beer/:id", (req, res) => {
+app.post("/admin/forms/beer/:id", ensureAdmin, (req, res) => {
   BeerModel.findOne({ _id: req.params.id })
     .then((beer) => {
       Object.assign(beer, req.body);
       return beer.save();
     })
     .then(() => res.redirect("/admin"));
+});
+
+app.get("/admin/forms/request/:id", ensureAdmin, (req, res) => {
+  RequestModel.findOne({ _id: req.params.id })
+    .then((request) => {
+      BDB.getOneById(request.brewerydbId)
+        .then((beer) => {
+          request.remove();
+          return BeerModel.create({
+            brewerydbId: request.brewerydbId,
+            inStock: true,
+            name: beer.name,
+            description: beer.description,
+            brewery: _.get(beer, "breweries.0.name"),
+            labelUrl: _.get(beer, "labels.large"),
+            abv: beer.abv,
+            ibu: beer.ibu,
+          })
+        })
+        .then((beer) => {
+          res.redirect("/admin");
+        })
+        .catch((err) => {
+          res.redirect("/admin");
+        });
+      });
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
