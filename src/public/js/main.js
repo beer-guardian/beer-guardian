@@ -48,6 +48,23 @@
         }
         openActiveBeerModal(beer)
       })
+
+      $(".card .vote-up").click(function (e) {
+        var id = $(this).parent().parent().attr("data-id");
+        vote(id,'UP')
+        e.stopPropagation();
+      });
+      $(".card .vote-down").click(function (e) {
+        var id = $(this).parent().parent().attr("data-id");
+        vote(id,'DOWN')
+        e.stopPropagation();
+      });
+      
+
+
+
+
+
       $('.beer-cards .card-add').click(function() {
         openAddBeerModal()
         setTimeout(function() { $('#input-beer-search').focus() }, 100);
@@ -60,9 +77,6 @@
       })
 
 
-      $('.card vote').click(function() {
-        console.log($(this).parent().find())
-      })
 
 
     });
@@ -129,6 +143,13 @@
         if (parseScore < 0) {
           $(this).addClass('negative')
         }
+      });
+    }
+
+    function refreshScore(id) {
+      var url = '/api/v1/beers/'+id;
+      $.get(url,function(data) {
+        console.log(id)
       });
     }
     
