@@ -128,7 +128,7 @@
 
         $.get('/api/v1/beers',function(data) {
           $.each(data,function(key,value){
-            $('.admin .beers-table').append('<tr><td><a target="_blank" href="/admin/forms/beer/'+value._id+'">'+value._id+'</a></td>' +
+            $('.admin .beers-table').append('<tr><td><a href="/admin/forms/beer/'+value._id+'">'+value._id+'</a></td>' +
             '<td>'+value.name+'</td>' +
             '<td>'+value.brewery+'</td>' +
             '<td>'+value.brewerydbId+'</td>' +
