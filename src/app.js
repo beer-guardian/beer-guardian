@@ -61,7 +61,16 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "views"));
 
 // All files in public are served directly
-app.get("/", (req, res) => res.render("index"));
+app.get("/", (req, res) => {
+  Beers.getAllInStock(req.user)
+    .then((beers) => {
+      res.render("index", {
+        user: req.user,
+        beers,
+      });
+    });
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // JSON api in the api folder
@@ -70,6 +79,13 @@ app.use("/api/v1", require("./api"));
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", passport.authenticate("local"), (req, res) => {
   res.redirect("/");
+});
+
+app.get("/admin", (req, res) => {
+  if (!res.isAuthenticated()) {
+    return res.redirect("/login");
+  }
+  res.render("admin");
 });
 
 app.get("/register", (req, res) => res.render("register"));
