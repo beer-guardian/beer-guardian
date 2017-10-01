@@ -1,6 +1,8 @@
 "use strict";
 
 const BeerModel = require("../../models/beers");
+const RequestModel = require("../../models/requests");
+const UserModel = require("../../models/users");
 const BDB = require("../../lib/brewdb");
 
 const _ = require("lodash");
@@ -11,6 +13,22 @@ module.exports.get("/", (req, res) => {
   res.json({
     admin: true,
   });
+});
+
+module.exports.get("/requests", (req, res) => {
+  RequestModel.find({})
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => res.status(500).json({ message: "Unknown error" }));
+});
+
+module.exports.get("/users", (req, res) => {
+  UserModel.find({})
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => res.status(500).json({ message: "Unknown error" }));
 });
 
 module.exports.post("/beers", (req, res) => {
