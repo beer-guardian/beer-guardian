@@ -16,6 +16,7 @@ const hbs = require("express-hbs");
 
 const auth = require("./auth");
 const UserModel = require("./models/users");
+const Beers = require("./controllers/beer");
 
 const port = 3000;
 
@@ -47,10 +48,12 @@ app.use(session({
 }));
 
 // set up passport middlewares
+// and authentication routes
 const localStrategy = auth.local;
 passport.use(localStrategy);
 app.use(passport.initialize());
 app.use(passport.session());
+auth.routes(app);
 
 app.engine('hbs', hbs.express4({
   defaultLayout: path.join(__dirname, "views/main"),
@@ -75,29 +78,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // JSON api in the api folder
 app.use("/api/v1", require("./api"));
-
-app.get("/login", (req, res) => res.render("login"));
-app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.redirect("/");
-});
-
-app.get("/admin", (req, res) => {
-  if (!res.isAuthenticated()) {
-    return res.redirect("/login");
-  }
-  res.render("admin");
-});
-
-app.get("/register", (req, res) => res.render("register"));
-app.post("/register", (req, res) => {
-  UserModel.create(req.body)
-    .then(() => res.redirect("/"));
-});
-
-app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
-});
 
 console.log(`server is listening on http://localhost:${port}`)
 app.listen(port);

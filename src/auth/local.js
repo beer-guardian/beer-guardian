@@ -10,7 +10,7 @@ module.exports = new LocalStrategy({ usernameField: "email" }, function (email, 
         return done(null, false, { message: "Incorrect email or password" });
       }
 
-      user.validPassword(password)
+      user.checkPass(password)
         .then((valid) => {
           if (!valid) {
             return done(null, false, { message: "Incorrect email or password" });

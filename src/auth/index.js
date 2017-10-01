@@ -1,6 +1,7 @@
 "use strict";
 
 const passport = require("passport");
+const Users = require("../models/users");
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -14,5 +15,30 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = {
   local: require("./local"),
+  routes: (app) => {
+    app.get("/login", (req, res) => res.render("login"));
+    app.post('/login', passport.authenticate("local", {
+      successReturnToOrRedirect: '/',
+      failureRedirect: '/login',
+    }));
+
+    app.get("/admin", (req, res) => {
+      if (!req.isAuthenticated()) {
+        return res.redirect("/login");
+      }
+      res.render("admin");
+    });
+
+    app.get("/register", (req, res) => res.render("register"));
+    app.post("/register", (req, res) => {
+      UserModel.create(req.body)
+        .then(() => res.redirect("/"));
+    });
+
+    app.get("/logout", (req, res) => {
+      req.session.destroy();
+      res.redirect("/");
+    });
+  },
 };
 
