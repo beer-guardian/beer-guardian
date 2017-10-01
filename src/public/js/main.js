@@ -1,17 +1,3 @@
-/*=============================
- *      TODO
- * 
- *  - bounce the score indicator upon voting
- *  - fix the data-id vs #id in the .card (multiple references)
- *  - audit code for clean up and do checks on each change
- *  - reorder the cards on the fly... not going to be fun
- *  - redirect to 
- *  - only display logout when youre logged in and only display login when youre *    logged out
- *  - dont let use click add new beet button unless logged in
- * 
- */
-
-
 (function() {
   
     $(function() {//doc ready
