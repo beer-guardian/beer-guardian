@@ -66,15 +66,11 @@
         
         $(".active-beer-modal .vote-up").click(function() {
           var id = $('.active-beer-modal').attr('id')
-          console.log(id)
           vote(id,'UP')
-          // closeModal()
         });
         $(".active-beer-modal .vote-down").click(function() {
           var id = $('.active-beer-modal').attr('id')
-          console.log(id)
           vote(id,'DOWN')
-          // closeModal()
         });
 
 
@@ -151,7 +147,6 @@
         });
 
         $.get('/api/v1/admin/users',function(data) {
-          console.log(data)
           $.each(data,function(key,value){
             $('.admin .users-table').append('<tr><td>'+value._id+'</td>' +
             '<td>'+value.email+'</td>' +
@@ -167,7 +162,6 @@
     
     
     function openActiveBeerModal(beer) {
-      console.log(beer)
       $('.active-beer-modal').attr('id',beer.id)
       $('.active-beer-modal .header .title').html(beer.name)
       $('.active-beer-modal .brewery').html(beer.brewery)
@@ -198,7 +192,6 @@
       var url = '/api/v1/search?q='+query;
       if (query!=='') {
         $.get(url,function(data) {
-          console.log(data)
           $.each(data,function(key,value) {
             if (value.breweries) {
               $('.add-beer-modal ul').append('<li data-id="'+value.id+'"><div>'+value.name+'</div><div class="small">'+value.breweries[0].name+'</div></li>');
@@ -237,7 +230,6 @@
     function refreshScore(id) {
       var url = '/api/v1/beers/'+id;
       $.get(url,function(data) {
-        console.log(data.score)
         $('#'+id+' .score span').html(data.score)
         $('#'+id+'').attr('data-score',data.score)
         $('#'+id+'.active-beer-modal .score .number').html(data.score)
