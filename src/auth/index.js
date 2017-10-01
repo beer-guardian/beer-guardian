@@ -2,6 +2,7 @@
 
 const passport = require("passport");
 const UserModel = require("../models/users");
+const _ = require("lodash");
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -31,6 +32,8 @@ module.exports = {
 
     app.get("/register", (req, res) => res.render("register"));
     app.post("/register", (req, res) => {
+      const admins = process.env.ADMIN_EMAILS.split(",") || [];
+      req.body.admin = !!_.find(admins, a => a === req.body.email);
       UserModel.create(req.body)
         .then(() => res.redirect("/"));
     });
