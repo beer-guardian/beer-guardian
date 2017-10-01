@@ -93,10 +93,42 @@
         //admin route
       } else if (window.location.pathname == '/admin') {
 
-        // $('#table_id').DataTable();
+        var clickedTab = $(".tabs > .active");
+        var tabWrapper = $(".tab__content");
+        var activeTab = tabWrapper.find(".active");
+        var activeTabHeight = activeTab.outerHeight();
+        activeTab.show();
+        tabWrapper.height(activeTabHeight);
+        $(".tabs > li").on("click", function() {
+          $(".tabs > li").removeClass("active");
+          $(this).addClass("active");
+          clickedTab = $(".tabs .active");
+          activeTab.fadeOut(250, function() {
+            $(".tab__content > li").removeClass("active");
+            var clickedTabIndex = clickedTab.index();
+            $(".tab__content > li").eq(clickedTabIndex).addClass("active");
+            activeTab = $(".tab__content > .active");
+            activeTabHeight = activeTab.outerHeight();
+            tabWrapper.stop().delay(50).animate({
+              height: activeTabHeight
+            }, 500, function() {
+              activeTab.delay(50).fadeIn(250);
+            });
+          });
+        });
+        var colorButton = $(".colors li");
+        colorButton.on("click", function(){
+          $(".colors > li").removeClass("active-color");
+          $(this).addClass("active-color");
+          var newColor = $(this).attr("data-color");
+          $(".bg-color").css("background-color", newColor);
+          $(".text-color").css("color", newColor);
+        });
+
+
         $.get('/api/v1/beers',function(data) {
           $.each(data,function(key,value){
-            $('.admin .beers-table').append('<tr><td>'+value._id+'</td>' +
+            $('.admin .beers-table').append('<tr><td><a target="_blank" href="/admin/forms/beer/'+value._id+'">'+value._id+'</a></td>' +
             '<td>'+value.name+'</td>' +
             '<td>'+value.brewery+'</td>' +
             '<td>'+value.brewerydbId+'</td>' +
@@ -114,7 +146,6 @@
           })
         });
 
-
         $.get('/api/v1/admin/users',function(data) {
           console.log(data)
           $.each(data,function(key,value){
@@ -124,8 +155,6 @@
             '</tr>');
           })
         });
-
-
       }
 
     });

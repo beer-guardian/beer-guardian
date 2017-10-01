@@ -7,41 +7,63 @@
 
 
     <section class="wrapper">
-      <ul class="tabs">
-        <li class="active">Colors</li>
-        <li>Favorite movies</li>
-        <li>About</li>
-      </ul>
-
-      <ul class="tab__content">
-        <li class="active">
-          <div class="content__wrapper">
-            <h2 class="text-color">Pick a color</h2>
-            
-            <ul class="colors">
-              <li data-color="#2ecc71"></li>
-              <li data-color="#D64A4B"></li>
-              <li data-color="#8e44ad"></li>
-              <li class="active-color" data-color="#46a1de"></li>
-              <li data-color="#bdc3c7"></li>
-            </ul>
+    <ul class="tabs">
+      <li class="active">Beers</li>
+      <li>Requests</li>
+      <li>Users</li>
+    </ul>
+    <ul class="tab__content">
+      <li class="active">
+        <div class="content__wrapper">
+          <div class="table-wrapper">
+            <table class="beers-table">
+              <thead>
+                <tr>
+                  <td>id</td>
+                  <td>name</td>
+                  <td>brewery</td>
+                  <td>brewerydbId</td>
+                  <td>score</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </li>
-        <li>
-          <div class="content__wrapper">
-            <h2 class="text-color">Her</h2>
-            
-            <img src="http://lewihussey.com/codepen-img/her.jpg">
+        </div>
+      </li>
+      <li>
+        <div class="content__wrapper">
+          <div class="table-wrapper">
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <td>id</td>
+                  <td>name</td>
+                  <td>brewerydbId</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </li>
-        <li>
-          <div class="content__wrapper">
-            <h2 class="text-color">About</h2>
-            
-            <p>Created by <a class="text-color" href="http://lewihussey.com" target="_blank">Lewi Hussey</a></p>
+        </div>
+      </li>
+      <li>
+        <div class="content__wrapper">
+          <div class="table-wrapper">
+            <table class="users-table">
+              <thead>
+                <tr>
+                  <td>id</td>
+                  <td>email</td>
+                  <td>admin</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </li>
-      </ul>
+        </div>
+      </li>
+    </ul>
     </section>
 
 
