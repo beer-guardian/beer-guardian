@@ -4,6 +4,10 @@
     
     $(function() {
 
+      setTimeout(function(){
+        $('body').addClass('page-loaded');
+      }, 2000);
+
       if (window.location.pathname == '/') {
 
    

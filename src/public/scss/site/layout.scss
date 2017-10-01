@@ -60,3 +60,72 @@ body {
 .main-layout {
   padding: 0 6%;
 }
+
+
+
+#loading {
+  padding-top: 5%;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #282b2d;
+  z-index: 100;
+  text-align: center;
+  .inner {
+    height: 250px;
+    width: 300px;
+    img {
+      height: 200px;
+      margin-bottom: 40px;
+    }
+    .loader {
+      margin: auto;
+      width: 150px;
+      height: 4px;
+      background: rgba(201, 129, 42, 0.36);
+      overflow: hidden;
+      .loader-line {
+        height: 4px;
+        background: #C0863E;
+      }
+      .a-loop {
+        animation: 1.7s infinite loop cubic-bezier(0.420, 0.000, 0.580, 1.000);
+      }
+      @keyframes loop {
+        0% {
+          width: 0%;
+          transform: translateX(0%);
+        }
+        7% {
+          width: 10%;
+          transform: translateX(0%);
+        }
+        40% {
+          width: 60%;
+        }
+        50% {
+          transform: translateX(85%);
+        }
+        
+        75% {
+          width: 100%;
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    }
+  } 
+}
+
+
+
+.page-loaded {
+  #loading {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
