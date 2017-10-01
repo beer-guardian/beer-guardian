@@ -3,6 +3,7 @@
 const BDB = require("../lib/brewdb");
 const Beers = require("../controllers/beer");
 const Votes = require("../controllers/vote");
+const RequestModel = require("../models/requests");
 
 module.exports = require("express").Router();
 
@@ -15,6 +16,36 @@ module.exports.get("/search", (req, res) => {
 
 module.exports.get("/beers", (req, res) =>
   Beers.getAllInStock(req.user).then(beers => res.json(beers)));
+
+module.exports.post("/request", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  return BDB.getOneById(req.body.beer)
+    .then((beer) => {
+      if (!beer) {
+        return res.status(404).json({ message: "Beer not found" });
+      }
+
+      return RequestModel.create({
+        user: req.user._id,
+        brewerydbId: req.body.beer,
+        name: beer.name,
+      })
+      .then((request) => {
+        res.json(request);
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({
+        message: "Unknown error",
+      });
+    });
+});
 
 module.exports.post("/vote", (req, res) => {
   if (!req.isAuthenticated()) {
