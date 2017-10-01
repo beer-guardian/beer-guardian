@@ -89,7 +89,7 @@
       }
       .numbers {
         text-align: center;
-        padding: 0 20px 0 80px;
+        padding: 0 20px 0 70px;
         padding-top: 20px;
         .widget {
           padding: 10px 0;
@@ -97,14 +97,14 @@
           .number {
             font-size: 55px;
             vertical-align: middle;
-            text-align: right;
+            text-align: center;
             color: #143964;
           }
           .title {
             font-size: 17px;
             vertical-align: middle;
             text-align: left;
-            padding-left: 24px;;
+            padding-left: 30px;;
             color: #696969;
           }
           &:last-child {

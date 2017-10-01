@@ -22,7 +22,7 @@
 
 
       //modal open and close clicks
-      $('.beer-cards .card').click(function() {
+      $('.beer-cards .card-active').click(function() {
         var beer = {
           name: $(this).find('.title').text(),
           brewery: $(this).find('.meta').text(),
@@ -32,7 +32,10 @@
           score: $(this).attr("data-score"),
           label: $(this).css("background-image")
         }
-        openModal(beer)
+        openActiveBeerModal(beer)
+      })
+      $('.beer-cards .card-active').click(function() {
+        openModal()
       })
       $('.modal-cover').click(function() {
         closeModal()
@@ -54,7 +57,7 @@
       $('.modal .body p').html(beer.desc)
       $('.modal .widget.abv .number').html(beer.abv)
       $('.modal .widget.ibu .number').html(beer.ibu)
-      $('.modal .widget.ibu .score').html(beer.ibu)
+      $('.modal .widget.score .number').html(beer.score)
       $('.modal .image').css('background-image',beer.label)
       $('.modal-cover').fadeIn('fast')
       $('.modal').addClass('reveal');
