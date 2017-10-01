@@ -7,8 +7,8 @@ class VoteController {
     return Model.find({ beer: id });
   }
 
-  static upVote(user, beerId) {
-    Model.findOne({ user, beer })
+  static upVote(user, beer) {
+    return Model.findOne({ user, beer })
       .then((res) => {
         const vote = res || new Model({
           user: user._id,
@@ -20,8 +20,8 @@ class VoteController {
       });
   }
 
-  static downVote(user, beerId) {
-    Model.findOne({ user, beer })
+  static downVote(user, beer) {
+    return Model.findOne({ user, beer })
       .then((res) => {
         const vote = res || new Model({
           user: user._id,

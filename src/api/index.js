@@ -2,6 +2,7 @@
 
 const BDB = require("../lib/brewdb");
 const Beers = require("../controllers/beer");
+const Votes = require("../controllers/vote");
 
 module.exports = require("express").Router();
 
