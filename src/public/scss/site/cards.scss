@@ -3,7 +3,6 @@
 
 
 .main-layout {
-  // padding: 100px;
   padding-top: 100px;
   padding-bottom: 100px;
   .beer-cards {
@@ -19,7 +18,6 @@
       transform-style: preserve-3d;
       transform: perspective(500px);
       position: relative;
-      // margin: 20px 20px 40px 20px;
       margin-bottom: 80px;
       margin-right: 40px;
       border-radius: 4px;
@@ -144,23 +142,30 @@
         display: none;
       }
     }
+    .no-label {
+      background-size: 60%;
+      background-color: #343434;
+      background-repeat: no-repeat;
+      background-image: url(../res/pint.svg);
+      background-blend-mode: overlay;
+      .top {
+        opacity: 1;
+      }
+      &:before {
+        display: none;
+      }
+    }
     .card-add {
-      background: #353837;
+      background: #343434;
+      &:before {
+        display: none;
+      }
       img {
         height: 80px;
         width: 80px;
         transform: translateZ(50px) scale(1);
         z-index: 10;
       }
-    }
-    .example1 {
-      background-image: url(../res/example/1.jpg)
-    }
-    .example2 {
-      background-image: url(../res/example/2.jpg)
-    }
-    .example3 {
-      background-image: url(../res/example/3.jpg)
     }
   }
 }
