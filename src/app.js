@@ -47,7 +47,6 @@ app.use(session({
     touchAfter: 24 * 3600,
   }),
 }));
-console.log(process.env.SESSION_SECRET)
 
 
 // set up passport middlewares

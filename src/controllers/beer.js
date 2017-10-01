@@ -22,8 +22,8 @@ class BeerController {
                 }
               }
 
-              out.ibu = out.ibu || "N/A";
-              out.abv = out.abv || "N/A";
+              out.ibu = out.ibu || "--";
+              out.abv = out.abv || "--";
 
               return out;
             }))));
