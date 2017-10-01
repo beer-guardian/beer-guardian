@@ -16,6 +16,7 @@ const hbs = require("express-hbs");
 
 const auth = require("./auth");
 const UserModel = require("./models/users");
+const BeerModel = require("./models/beers");
 const Beers = require("./controllers/beer");
 
 const port = 3000;
@@ -74,6 +75,22 @@ app.get("/", (req, res) => {
         beers,
       });
     });
+});
+
+app.get("/admin/forms/beer/:id", (req, res) => {
+  BeerModel.findOne({ _id: req.params.id })
+    .then((beer) => {
+      res.render("admin-beer-form", beer);
+    });
+});
+
+app.post("/admin/forms/beer/:id", (req, res) => {
+  BeerModel.findOne({ _id: req.params.id })
+    .then((beer) => {
+      Object.assign(beer, req.body);
+      return beer.save();
+    })
+    .then(() => res.redirect("/admin"));
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
