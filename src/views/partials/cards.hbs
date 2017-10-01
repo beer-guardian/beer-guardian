@@ -2,7 +2,7 @@
   <div class="beer-cards">
     {{#if beers}}
       {{#each beers}}
-        <div class="card js-tilt example1" style="background-image: url({{labelUrl}})" data-id="{{id}}">
+        <div class="card js-tilt example1" style="background-image: url({{labelUrl}})" data-id="{{id}}" data-abv="{{abv}}" data-ibu="{{ibu}}">
           <div class="score"><span>{{rating}}</span></div>
           <div class="top">
             <div class="title">{{name}}</div>
