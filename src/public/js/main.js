@@ -97,18 +97,8 @@
     }
 
     function beerRequest(id) {
-      var data = {
-        beer: id
-      }
-      // $.ajax({
-      //   type: "POST",
-      //   url: '/api/v1/request',
-      //   data: data,
-      //   success: success,
-      //   dataType: dataType
-      // });
-      $.post('/api/v1/request', function(data ) {
-        $( ".result" ).html( data );
+      $.post('/api/v1/request', {beer: id}).done(function( data ) {
+        console.log( "Data Loaded: " + data );
       });
     }
     
@@ -141,7 +131,7 @@
     
 
     $('body').on('click', '.add-beer-modal li', function() {
-      console.log(true)
+      beerRequest($(this).attr("data-id"))
     });
     
     
