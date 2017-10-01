@@ -109,8 +109,8 @@
       }
     }
 
-    function beerRequest(id) {
-      $.post('/api/v1/request', {beer: id}).done(function(data) {
+    function beerRequest(name,id) {
+      $.post('/api/v1/request', {beer: id, name:name}).done(function(data) {
         $('.add-beer-modal ul').empty();
         $( "#input-beer-search" ).val('Beer requested, thank you.');
         $( "#input-beer-search" ).addClass('disabled');
