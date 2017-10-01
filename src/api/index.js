@@ -17,29 +17,43 @@ module.exports.get("/beers", (req, res) =>
 
 module.exports.post("/vote", (req, res) => {
   if (!req.isAuthenticated()) {
-    return res.status(401)
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
   }
 
   if (req.body.vote === "UP") {
-    return Votes.upVote(req.user, req.body.bee)
-      .then(() => res.status(200).send())
-      .catch(() => res.status(500).send());
+    return Votes.upVote(req.user, req.body.beer)
+      .then(() => res.status(200).json({
+        message: "Thanks for the vote!",
+      }))
+      .catch(() => res.status(500).json({
+        message: "Unknown error",
+      }));
   }
 
   if (req.body.vote === "DOWN") {
     return Votes.downVote(req.user, req.body.beer)
-      .then(() => res.status(200).send())
-      .catch(() => res.status(500).send());
+      .then(() => res.status(200).json({
+        message: "Thanks for the vote!",
+      }))
+      .catch(() => res.status(500).json({
+        message: "Unknown error",
+      }));
   }
 });
 
 function ensureAdmin(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.status(401).send("Unauthorized");
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
   }
 
   if (!req.user.admin) {
-    return res.status(403).send("Must be an admin");
+    return res.status(403).json({
+      message: "Must be an admin",
+    });
   }
 
   next();

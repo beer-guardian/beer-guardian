@@ -9,8 +9,8 @@ const beerSchema = new mongoose.Schema({
   description: String,
   brewery: String,
   labelUrl: String,
-  abv: Number,
-  ibu: Number,
+  abv: String,
+  ibu: String,
 });
 
 module.exports = mongoose.model("Beer", beerSchema);
