@@ -95,11 +95,8 @@
 
         // $('#table_id').DataTable();
         $.get('/api/v1/beers',function(data) {
-          console.log(data)
           $.each(data,function(key,value){
-            console.log(value)
-            
-            $('.admin table tbody').append('<tr><td>'+value._id+'</td>' +
+            $('.admin .beers-table').append('<tr><td>'+value._id+'</td>' +
             '<td>'+value.name+'</td>' +
             '<td>'+value.brewery+'</td>' +
             '<td>'+value.brewerydbId+'</td>' +
@@ -107,6 +104,27 @@
             '</tr>');
           })
         });
+
+        $.get('/api/v1/admin/requests',function(data) {
+          $.each(data,function(key,value){
+            $('.admin .requests-table').append('<tr><td>'+value._id+'</td>' +
+            '<td>'+value.name+'</td>' +
+            '<td>'+value.brewerydbId+'</td>' +
+            '</tr>');
+          })
+        });
+
+
+        $.get('/api/v1/admin/users',function(data) {
+          console.log(data)
+          $.each(data,function(key,value){
+            $('.admin .users-table').append('<tr><td>'+value._id+'</td>' +
+            '<td>'+value.email+'</td>' +
+            '<td>'+value.admin+'</td>' +
+            '</tr>');
+          })
+        });
+
 
       }
 
