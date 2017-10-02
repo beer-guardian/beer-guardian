@@ -16,8 +16,14 @@
         </div>
       {{/each}}
     {{/if}}
-    <div class="card card-add js-tilt">
-      <img src="../res/plus.svg" class="abs-center">
-    </div>
+    {{#if user}}
+      <div class="card card-add js-tilt">
+        <img src="../res/plus.svg" class="abs-center">
+      </div>
+    {{else}}
+      <a href="login" class="card card-add js-tilt">
+        <img src="../res/plus.svg" class="abs-center">
+      </a>
+    {{/if}}
   </div>
 </div>

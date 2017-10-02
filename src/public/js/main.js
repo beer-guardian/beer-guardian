@@ -161,7 +161,7 @@
       }
 
       //print weird stuff to console 
-      consolePrint();
+      // consolePrint();
 
     });//end doc ready
     
