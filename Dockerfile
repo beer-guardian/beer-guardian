@@ -10,7 +10,7 @@ RUN apk add --no-cache make gcc g++ python git && \
     npm install --build-from-source=bcrypt && \
     apk del make gcc g++ python git
 
-ENV ENVIRONMENT_REFRESH_SRC 4
+ARG CACHE_DATE=2016-01-01
 
 COPY src src
 
