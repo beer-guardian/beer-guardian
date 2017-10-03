@@ -32,7 +32,8 @@ module.exports = {
         return res.redirect("/");
       }
 
-      res.render("admin");
+      // res.render("admin");
+      res.render("admin", { admin:true });
     });
 
     app.get("/register", (req, res) => res.render("register"));
