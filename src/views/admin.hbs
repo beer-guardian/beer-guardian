@@ -1,5 +1,75 @@
 {{> nav class="admin-nav"}}
-<div class="admin">
+<ul class="sub-nav-admin col-wrapper">
+  <li class="tab col four active" data-button="1">BEERS</li>
+  <li class="tab col four" data-button="2">REQUESTS</li>
+  <li class="tab col four" data-button="3">USERS</li>
+</ul>
+
+<div class="tab-container">
+
+
+
+  <div class="tab-content" data-tab="1">
+    <input type="text" class="table-1-search" placeholder="search">
+    <table cellpadding="0" cellspacing="0" border="0" class="mdl-data-table" id="beer-table">
+      <thead>
+        <tr>
+          <th class="score">score</th>
+          <th>id</th>
+          <th>name</th>
+          <th>brewery</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+
+
+  <div class="tab-content" data-tab="2">
+    <input type="text" class="table-2-search" placeholder="search">
+    <table cellpadding="0" cellspacing="0" border="0" class="mdl-data-table" id="request-table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>brewerydbId</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+
+
+  <div class="tab-content" data-tab="3">
+    <input type="text" class="table-3-search" placeholder="search">
+    <table cellpadding="0" cellspacing="0" border="0" class="mdl-data-table" id="user-table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>brewerydbId</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+{{!-- <div class="beer-data-table">
+  <table cellpadding="0" cellspacing="0" border="0" class="display" id="beer-table">
+    <thead>
+      <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>brewery(s)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div> --}}
+{{!-- <div class="admin">
   <div class="main-layout">
     <section class="wrapper">
     <ul class="tabs">
@@ -62,4 +132,4 @@
     </ul>
     </section>
   </div>
-</div>
+</div> --}}

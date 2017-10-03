@@ -92,71 +92,102 @@
       //-ADMIN ROUTE-
       } else if (window.location.pathname == '/admin') {
 
-        //admin page tab section logic
-        var clickedTab = $(".tabs > .active");
-        var tabWrapper = $(".tab__content");
-        var activeTab = tabWrapper.find(".active");
-        var activeTabHeight = activeTab.outerHeight();
-        activeTab.show();
-        tabWrapper.height(activeTabHeight);
-        $(".tabs > li").on("click", function() {
-          $(".tabs > li").removeClass("active");
-          $(this).addClass("active");
-          clickedTab = $(".tabs .active");
-          activeTab.fadeOut(250, function() {
-            $(".tab__content > li").removeClass("active");
-            var clickedTabIndex = clickedTab.index();
-            $(".tab__content > li").eq(clickedTabIndex).addClass("active");
-            activeTab = $(".tab__content > .active");
-            activeTabHeight = activeTab.outerHeight();
-            tabWrapper.stop().delay(50).animate({
-              height: activeTabHeight
-            }, 500, function() {
-              activeTab.delay(50).fadeIn(250);
-            });
-          });
-        });
-        //this can be removed safely (validate)
-        // var colorButton = $(".colors li");
-        // colorButton.on("click", function(){
-        //   $(".colors > li").removeClass("active-color");
-        //   $(this).addClass("active-color");
-        //   var newColor = $(this).attr("data-color");
-        //   $(".bg-color").css("background-color", newColor);
-        //   $(".text-color").css("color", newColor);
-        // });
+        //tabs
+        $('.sub-nav-admin li').click(function() {
+          var tab = $(this).attr('data-button')
+          $('.tab-content').hide()
+          $('.tab').removeClass('active')
+          $("div[data-tab='"+tab+"']").show()
+          $("li[data-button='"+tab+"']").addClass('active')
+        })
 
         //populate the beer table
         $.get('/api/v1/beers',function(data) {
-          $.each(data,function(key,value){
-            $('.admin .beers-table').append('<tr><td><a href="/admin/forms/beer/'+value._id+'">'+value._id+'</a></td>' +
-            '<td>'+value.name+'</td>' +
-            '<td>'+value.brewery+'</td>' +
-            '<td>'+value.brewerydbId+'</td>' +
-            '<td>'+value.score+'</td>' +
-            '</tr>');
+          var oTable1 = $('#beer-table').DataTable({
+            "paging": false,
+            "order": [[ 0, "desc" ]],
+            "columnDefs": [
+              { targets: [ 0, 1, 2 ], className: 'mdl-data-table__cell--non-numeric' }
+            ],
+            language: {
+              searchPlaceholder: "Search",
+              search: "",
+              emptyTable: "No beers in database"
+            },
+            data: data,
+            columns: [
+              { data: 'score' },
+              { data: '_id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                  $(nTd).html("<a href='/admin/forms/beer/"+sData+"'>"+sData+"</a>");
+                } 
+              },
+              { data: 'name' },
+              { data: 'brewery' }
+            ]
+          });
+          $('.table-1-search').keyup(function(){
+            oTable1.search($(this).val()).draw() ;
           })
         });
 
         //populate the requests table
         $.get('/api/v1/admin/requests',function(data) {
-          $.each(data,function(key,value){
-            $('.admin .requests-table').append('<tr><td>'+value._id+'</td>' +
-            '<td>'+value.name+'</td>' +
-            '<td>'+value.brewerydbId+'</td>' +
-            '<td><a class="approve-link" href="/admin/forms/request/'+value._id+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+value._id+'">DENY</a></td>' +
-            '</tr>');
+          console.log(data)
+          var oTable2 = $('#request-table').DataTable({
+            paging: false,
+            columnDefs: [
+              { targets: [ 0, 1, 2 ], className: 'mdl-data-table__cell--non-numeric' }
+            ],
+            language: {
+              searchPlaceholder: "Search",
+              search: "",
+              emptyTable: "No pending requests"
+            },
+            data: data,
+            columns: [
+              { data: '_id' },
+              { data: 'name' },
+              { data: 'brewerydbId', defaultContent: "custom request" },
+              { data: '_id',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                  $(nTd).html('<a class="approve-link" href="/admin/forms/request/'+sData+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+sData+'">DENY</a>');
+                } 
+              },
+            ]
+          });
+          $('.table-2-search').keyup(function(){
+            oTable2.search($(this).val()).draw() ;
           })
         });
 
         //populate the users table
         $.get('/api/v1/admin/users',function(data) {
-          $.each(data,function(key,value){
-            $('.admin .users-table').append('<tr><td>'+value._id+'</td>' +
-            '<td>'+value.email+'</td>' +
-            '<td>'+value.admin+'</td>' +
-            '</tr>');
+          var oTable3 = $('#user-table').DataTable({
+            paging: false,
+            columnDefs: [
+              { targets: [ 0, 1, 2 ], className: 'mdl-data-table__cell--non-numeric' }
+            ],
+            language: {
+              searchPlaceholder: "Search",
+              search: "",
+            },
+            data: data,
+            columns: [
+              { data: '_id' },
+              { data: 'email' },
+              { data: 'admin' }
+            ]
+          });
+          $('.table-3-search').keyup(function(){
+            oTable3.search($(this).val()).draw() ;
           })
+          // $.each(data,function(key,value){
+          //   $('.admin .users-table').append('<tr><td>'+value._id+'</td>' +
+          //   '<td>'+value.email+'</td>' +
+          //   '<td>'+value.admin+'</td>' +
+          //   '</tr>');
+          // })
         });
       }
 
