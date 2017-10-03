@@ -1,6 +1,9 @@
 <div class="access-form login">
   <img src="/res/full-banner.png">
   <form action="/login" method="post">
+    {{#if messages.error}}
+      <p class="flash">{{messages.error.[0]}}</p>
+    {{/if}}
     <input name="email" type="email" placeholder="Email">
     <input name="password" type="password" placeholder="Password">
     <button type="submit">LOGIN</button>

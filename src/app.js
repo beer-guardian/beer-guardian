@@ -14,6 +14,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
 const hbs = require("express-hbs");
+const flash = require("connect-flash");
 
 const auth = require("./auth");
 const UserModel = require("./models/users");
@@ -53,6 +54,7 @@ app.use(session({
   }),
 }));
 
+app.use(flash());
 
 // set up passport middlewares
 // and authentication routes

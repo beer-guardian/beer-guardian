@@ -17,10 +17,11 @@ passport.deserializeUser(function(id, done) {
 module.exports = {
   local: require("./local"),
   routes: (app) => {
-    app.get("/login", (req, res) => res.render("login"));
+    app.get("/login", (req, res) => res.render("login", { messages: req.flash() })),
     app.post('/login', passport.authenticate("local", {
       successReturnToOrRedirect: '/',
       failureRedirect: '/login',
+      failureFlash: "Incorrect username or password",
     }));
 
     app.get("/admin", (req, res) => {
