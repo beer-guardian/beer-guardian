@@ -151,7 +151,7 @@
               { data: 'brewerydbId', defaultContent: "custom request" },
               { data: '_id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                  $(nTd).html('<a class="approve-link" href="/admin/forms/request/'+sData+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+sData+'">DENY</a>');a
+                  $(nTd).html('<a class="approve-link" href="/admin/forms/request/'+sData+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+sData+'">DENY</a>');
                 } 
               },
             ]
