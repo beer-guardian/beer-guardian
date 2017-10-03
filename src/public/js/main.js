@@ -151,7 +151,7 @@
               { data: 'brewerydbId', defaultContent: "custom request" },
               { data: '_id',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                  $(nTd).html('<a class="approve-link" href="/admin/forms/request/'+sData+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+sData+'">DENY</a>');
+                  $(nTd).html('<a class="approve-link" href="/admin/forms/request/'+sData+'">APPROVE</a><a class="approve-link deny" href="/admin/forms/deny/'+sData+'">DENY</a>');a
                 } 
               },
             ]
@@ -182,12 +182,6 @@
           $('.table-3-search').keyup(function(){
             oTable3.search($(this).val()).draw() ;
           })
-          // $.each(data,function(key,value){
-          //   $('.admin .users-table').append('<tr><td>'+value._id+'</td>' +
-          //   '<td>'+value.email+'</td>' +
-          //   '<td>'+value.admin+'</td>' +
-          //   '</tr>');
-          // })
         });
       }
 
