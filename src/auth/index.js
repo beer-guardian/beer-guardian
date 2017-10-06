@@ -39,6 +39,9 @@ module.exports = {
 
     app.get("/register", (req, res) => res.render("register"));
     app.post("/register", (req, res) => {
+      if (!req.body.email.match(/dynatrace\.com/i)) {
+        return res.status(401).send("You don't work here");
+      }
       const admins = process.env.ADMIN_EMAILS.split(",") || [];
       req.body.admin = !!_.find(admins, a => a === req.body.email);
       UserModel.create(req.body)
