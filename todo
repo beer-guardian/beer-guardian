@@ -18,4 +18,3 @@ Dan
 
 only display logout when youre logged in and only display login when youre logged out
 
-dont let user click add new beer button unless logged in. should send user to login/register etc
