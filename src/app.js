@@ -76,7 +76,7 @@ app.set('views', path.join(__dirname, "views"));
 app.get("/", (req, res) => {
   Beers.getAllInStock(req.user)
     .then((beers) => {
-      res.render("keg", {
+      res.render("index", {
         user: req.user,
         beers,
       });
@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
 app.get("/keg", (req, res) => {
   Beers.getAllInKeg(req.user)
     .then((beers) => {
-      res.render("index", {
+      res.render("keg", {
         user: req.user,
         beers,
       });
